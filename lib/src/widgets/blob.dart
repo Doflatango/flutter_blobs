@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:blobs/blobs.dart';
 import 'package:blobs/src/config.dart';
-import 'package:blobs/src/models.dart';
-import 'package:blobs/src/services/blob_generator.dart';
 import 'package:blobs/src/widgets/animated_blob.dart';
 import 'package:blobs/src/widgets/simple_blob.dart';
 import 'package:flutter/material.dart';
@@ -114,6 +112,23 @@ class _BlobState extends State<Blob> {
       );
     } else if (widget.controller != null) {
       widget.controller!.onChange(_updateBlob);
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant Blob oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.size != oldWidget.size || 
+        widget.debug != oldWidget.debug ||
+        widget.styles != oldWidget.styles ||
+        widget.child != oldWidget.debug ||
+        widget.edgesCount != oldWidget.edgesCount ||
+        widget.minGrowth != oldWidget.minGrowth ||
+        widget.id != oldWidget.id ||
+        widget.duration != oldWidget.duration ||
+        widget.loop != oldWidget.loop ||
+        widget.isAnimated != oldWidget.isAnimated) {
+      setState(() {});
     }
   }
 
